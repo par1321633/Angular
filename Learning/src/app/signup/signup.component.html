@@ -1,0 +1,82 @@
+<div class="container">
+<br>
+<h3>Registration Form</h3>
+<br>
+<form  (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+  <table>
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput placeholder="First Name" id="firstname"
+           [(ngModel)]="user.fname" name="firstname" required>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field >
+          <input matInput placeholder="Last Name" id="lastname"
+           [(ngModel)]="user.lname" name="lastname">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table >
+      <tr>
+          <td>
+              <mat-form-field >
+                <input type="text" matInput
+                  ([ngModel]) = "user.email" name="email" id="inputEmail"
+                  placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  required>
+              </mat-form-field>    
+            </td>
+        <td>
+          <mat-form-field >
+            <input matInput placeholder="Enter Password" id="password" required
+            [(ngModel)]="user.password" name="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility' : 'visibility_off'}}
+            </mat-icon>
+          </mat-form-field>
+        </td>
+      </tr>
+      </table>
+  
+    <mat-form-field >
+        <textarea matInput  placeholder="Address"
+        id="address" [(ngModel)]="user.address" name="address" required></textarea>
+    </mat-form-field>
+  
+  <table cellspacing="100">
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput placeholder="City" id="city" 
+          [(ngModel)]="user.city" name="city" required>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput placeholder="State" id="state" [(ngModel)]="user.state" 
+          required name="state">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput #postalcode maxlength="5" placeholder="Postal Code"
+           id="postalcode" required
+           [(ngModel)]="user.pincode" name="postalcode">
+          <mat-hint align="end">
+            {{postalcode.value.length}} / 6
+          </mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  
+
+  <p>
+    <button type="submit" mat-raised-button
+    [disabled]="!myForm.form.valid"
+    >Submit</button>
+  </p>
+</form>
+</div>
